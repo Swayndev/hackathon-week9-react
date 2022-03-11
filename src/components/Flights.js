@@ -10,7 +10,6 @@ function Flights() {     //{departureCity, arrivalCity}
     const { dep, arr, crit } = useParams();
 
 
-
     const url = `https://api.skypicker.com/flights?fly_from=${dep}&fly_to=${arr}&sort=${crit}&partner=data4youcbp202106&limit=5`;
     const [loading, setLoading ] = useState(false);
 
