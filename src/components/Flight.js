@@ -19,6 +19,8 @@ function Flight ({flightKey}) {
         <h3>Duration: {DateTime.fromMillis(flightKey.duration.total * 1000).toFormat('hh:mm')} hr </h3>
         <h3>Price: {flightKey.price} EUR </h3>
         <br/>
+        
+        <p>Number of stop over with this flight: {flightKey.route.length -1} </p>
     </div>
 )
 }

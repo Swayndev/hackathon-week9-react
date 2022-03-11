@@ -9,15 +9,10 @@ const Home = () => {
   const arrivals = ['VLC', 'MIL', 'STO', 'LIS', 'CGN']
   const [arrivalCity, setArrivalCity] = useState('VLC');
 
- 
-
-  // const handledepature = () => {
-  //     departures.
-  // }
-
-  // const handlearrival = () => {
-  //     arrivals.
-  // }
+  
+  const criterion = ['quality', 'price', 'duration', 'date']
+  const [sortCriteria, setSortCriteria] = useState('price');
+  
 
     return (
     <div>
@@ -28,44 +23,60 @@ const Home = () => {
 
       {/** city of departure**/}
         <div className='city_from'>
-        <h5> Select your city of departure</h5>
-        <strong>From:  </strong>
+          <h5> Select your city of departure</h5>
+          <strong>From:  </strong>
+          <select 
+            defaultValue={departureCity}
 
-        <select 
-          defaultValue={departureCity}
+            onChange={(e) => setDepartureCity(e.target.value)}>
 
-          onChange={(e) => setDepartureCity(e.target.value)}>
-
-          {departures.map((iata, i) => (
-            <option key={i} value={iata}>{iata}</option>
-          ))}
-        </select>
+            {departures.map((iata, i) => (
+              <option key={i} value={iata}>{iata}</option>
+            ))}
+          </select>
         </div>
         <br/>
         <br/>
 
         {/** city of arrival**/}
         <div className='city_to'>
-        <h5> Select your city of arrival</h5>
-        <strong>To: </strong> 
+          <h5> Select your city of arrival</h5>
+          <strong>To: </strong> 
 
-        <select 
-          defaultValue={arrivalCity}
+          <select 
+            defaultValue={arrivalCity}
 
-          onChange={(e) => setArrivalCity(e.target.value)}>
+            onChange={(e) => setArrivalCity(e.target.value)}>
 
-          {arrivals.map((iata, i) => (
-            <option key={i} value={iata}>{iata}</option>
-          ))}
-        </select>
-
+            {arrivals.map((iata, i) => (
+              <option key={i} value={iata}>{iata}</option>
+            ))}
+          </select>
         </div>
-        {/** THIS IS TEMPLATE FOR DROP DOWN MENU
+        
+        <br/><br/>
+        {/** sort by criteria **/}
+        <div className='sort'>
+          <h5> Filter the results by</h5>
+          <strong>Criteria: </strong> 
+
+          <select 
+            defaultValue={sortCriteria}
+
+            onChange={(e) => setSortCriteria(e.target.value)}>
+
+            {/** filter by criteria provided by the API documentation **/}
+            {criterion.map((criteria, i) => (
+              <option key={i} value={criteria}>{criteria}</option>
+            ))}
+          </select>
+        </div>
+        {/** 
         
         **/}
       </span>
       <br/><br/>
-      <Link to={`/flights/${departureCity}/${arrivalCity}`}>Search flights</Link>
+      <Link to={`/flights/${departureCity}/${arrivalCity}/${sortCriteria}`}>Search flights</Link>
       
     </div>
   )

@@ -7,14 +7,13 @@ function Flights() {     //{departureCity, arrivalCity}
 
     const [flights, setFlights] = useState([])
 
-    // const [departureCity, setDepartureCity] = useState('PRG');
+    const { dep, arr, crit } = useParams();
 
-    // const [arrivalCity, setArrivalCity] = useState('VLC');
 
-    const { dep, arr } = useParams();
 
-    const url = `https://api.skypicker.com/flights?fly_from=${dep}&fly_to=${arr}&partner=data4youcbp202106&limit=5`;
+    const url = `https://api.skypicker.com/flights?fly_from=${dep}&fly_to=${arr}&sort=${crit}&partner=data4youcbp202106&limit=5`;
     const [loading, setLoading ] = useState(false);
+
     async function getData() {
         const resp =await fetch(url);
         const result = await resp.json();
@@ -31,11 +30,13 @@ console.log('this is flights value', flights);
 
 
 
+
+
     return (
         <div>
     
     <Link to={`/`}>Home</Link>
-
+    <br/>
 
     {!loading ? <div>
     <p>Loading</p><p> ローディング　しばらくお待ちください。</p></div>:
@@ -45,6 +46,12 @@ console.log('this is flights value', flights);
       )
     })
     }
+
+    {/** 
+        flights.data.map( )
+
+    */}
+
         </div>
     )
 }

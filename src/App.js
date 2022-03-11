@@ -30,7 +30,7 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/flights/:dep/:arr" element={<Flights />} />
+          <Route path="/flights/:dep/:arr/:crit" element={<Flights />} />
           {/**
           <Route path="/flights" element={<Flights />} />
           <Route path="/:type/:query" element={<Component />} />
