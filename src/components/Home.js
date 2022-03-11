@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 
-import {  Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const Home = () => {
   const departures = ['PRG', 'LON', 'FRA', 'CDG', 'MAD']
@@ -9,7 +9,7 @@ const Home = () => {
   const arrivals = ['VLC', 'MIL', 'STO', 'LIS', 'CGN']
   const [arrivalCity, setArrivalCity] = useState('VLC');
 
-
+ 
 
   // const handledepature = () => {
   //     departures.
@@ -26,9 +26,10 @@ const Home = () => {
       <h3>You'll have an amazing flying experience and luckily you should not die (...at least not today)</h3>
       <span>
 
+      {/** city of departure**/}
         <div className='city_from'>
-        <h5> Select your city of arrival</h5>
-        <strong>From:</strong> {departureCity}
+        <h5> Select your city of departure</h5>
+        <strong>From:  </strong>
 
         <select 
           defaultValue={departureCity}
@@ -41,11 +42,12 @@ const Home = () => {
         </select>
         </div>
         <br/>
-        
         <br/>
+
+        {/** city of arrival**/}
         <div className='city_to'>
-        <h5> Select your city of departure</h5>
-        <strong>To:</strong> {arrivalCity}
+        <h5> Select your city of arrival</h5>
+        <strong>To: </strong> 
 
         <select 
           defaultValue={arrivalCity}
@@ -63,7 +65,7 @@ const Home = () => {
         **/}
       </span>
       <br/><br/>
-      <Link to={`/flights`}>Search flights</Link>
+      <Link to={`/flights/${departureCity}/${arrivalCity}`}>Search flights</Link>
       
     </div>
   )

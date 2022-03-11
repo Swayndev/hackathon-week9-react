@@ -1,24 +1,24 @@
 import {useEffect, useState} from 'react';
 import Flight from './Flight.js'
 
-import {  Link } from 'react-router-dom';
+import {Link, useParams } from 'react-router-dom';
 
-function Flights() {
+function Flights() {     //{departureCity, arrivalCity}
 
     const [flights, setFlights] = useState([])
 
-    const [departureCity, setDepartureCity] = useState('PRG');
+    // const [departureCity, setDepartureCity] = useState('PRG');
 
-  const [arrivalCity, setArrivalCity] = useState('VLC');
+    // const [arrivalCity, setArrivalCity] = useState('VLC');
 
+    const { dep, arr } = useParams();
 
-
-    const url = `https://api.skypicker.com/flights?fly_from=${departureCity}&fly_to=${arrivalCity}&partner=data4youcbp202106&limit=5`;
+    const url = `https://api.skypicker.com/flights?fly_from=${dep}&fly_to=${arr}&partner=data4youcbp202106&limit=5`;
     const [loading, setLoading ] = useState(false);
     async function getData() {
         const resp =await fetch(url);
-        const data = await resp.json();
-        data && setFlights(data.data)
+        const result = await resp.json();
+        result && setFlights(result.data)
         setLoading(true)
     }
 
@@ -27,9 +27,7 @@ function Flights() {
         getData();
         }, []
     )
-
-
-console.log(flights);
+console.log('this is flights value', flights);
 
 
 
